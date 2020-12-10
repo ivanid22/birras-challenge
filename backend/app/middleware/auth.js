@@ -1,12 +1,19 @@
 const jwt = require('jsonwebtoken');
 
 const validateToken = (req, res, next) => {
-  jwt.decode(req.get('access-token'), 'temporary', (error, result) => {
+  console.log('validating');
+  const token = req.get('access-token');
+  console.log(token);
+  if (!token) res.status(401).send({ error: 'No access token provided' });
+  jwt.verify(req.get('access-token'), 'temporary', (error, result) => {
+    console.log('eval')
     if(error) {
+      console.log('failed')
       res.status(401).send({ error: 'Invalid token' });
     }
     else {
-      res.append('uid', result.id);
+      console.log('result', result);
+      req.body.uid = result.id;
       next();
     }
   });

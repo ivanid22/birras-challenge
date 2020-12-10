@@ -1,12 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-
+const { UserType } = require('../types/user');
 const { Schema } = mongoose;
-const UserType = {
-  ADMIN: 1,
-  ATTENDANT: 2,
-  PROVIDER: 3,
-};
 
 const UserSchema = new Schema({
   name: {

@@ -5,7 +5,6 @@ const { passwordMatches, generateToken } = require("../helpers/auth");
 
 const authenticate = (req, res, next) => {
   const { email, password } = req.body;
-  console.log(User);
   User.findOne({ email }, (error, user) => {
     if (passwordMatches(password, user.password)) {
       res.append("access-token", generateToken(user._id));
