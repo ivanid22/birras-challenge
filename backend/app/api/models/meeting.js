@@ -26,6 +26,7 @@ MeetingSchema.methods.numberOfAttendants = function() {
 // Make sure creator is an admin
 MeetingSchema.pre('save', function(next) {
   if (this.creator.type !== UserType.ADMIN) {
+    console.log('type', this.creator.type)
     const error = new Error('Only admins can create meetings');
     next(error);
   } else {
