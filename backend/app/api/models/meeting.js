@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const { UserType } = require('../types/user');
-
 const { Schema } = mongoose;
 
 const MeetingSchema = Schema({
@@ -23,7 +22,7 @@ const MeetingSchema = Schema({
 });
 
 MeetingSchema.methods.numberOfAttendants = function() {
-  return this.attendants.length;
+  return this.attendants.length || 0;
 };
 
 // Make sure creator is an admin
@@ -36,5 +35,9 @@ MeetingSchema.pre('save', function(next) {
     next();
   }
 });
+
+MeetingSchema.post('save', function(next) {
+  
+})
 
 module.exports = mongoose.model('meeting', MeetingSchema);

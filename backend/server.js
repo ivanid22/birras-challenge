@@ -7,9 +7,8 @@ const routes = {
   users: require('./app/routes/users'),
   auth: require('./app/routes/auth'),
   meetings: require('./app/routes/meetings'),
+  attendances: require('./app/routes/attendances'),
 };
-
-console.log(validateToken)
 
 const app = express();
 
@@ -22,6 +21,7 @@ mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection 
 app.use('/users', routes.users);
 app.use('/auth', routes.auth);
 app.use('/meetings', validateToken, routes.meetings);
+app.use('/attendances', validateToken, routes.attendances);
 
 app.listen(3000, () => {
     console.log('App listening on port 3000!');
