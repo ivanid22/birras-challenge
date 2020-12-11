@@ -1,8 +1,11 @@
 const mongoose = require('mongoose');
 
-const DB_URL = 'mongodb://localhost:27017/birras_challenge';
+const { MONGODB_URL } = process.env;
 
-mongoose.connect(DB_URL);
+console.log(process.env);
+
+
+mongoose.connect(MONGODB_URL);
 mongoose.Promise = global.Promise;
 
 module.exports = mongoose;

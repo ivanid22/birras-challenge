@@ -5,7 +5,7 @@ const validateToken = (req, res, next) => {
   const token = req.get('access-token');
   console.log(token);
   if (!token) res.status(401).send({ error: 'No access token provided' });
-  jwt.verify(req.get('access-token'), 'temporary', (error, result) => {
+  jwt.verify(req.get('access-token'), process.env.JWT_SECRET, (error, result) => {
     console.log('eval')
     if(error) {
       console.log('failed')
