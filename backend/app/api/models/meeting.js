@@ -4,6 +4,9 @@ const { UserType } = require('../types/user');
 const { Schema } = mongoose;
 
 const MeetingSchema = Schema({
+  title: {
+    type: String,
+  },
   date: {
     type: Date,
     required: true,
